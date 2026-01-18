@@ -1,0 +1,40 @@
+package com.ecommerce.entity;
+
+import com.ecommerce.service.OrderStatus;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@Entity
+@Table(name = "orders")
+public class OrderEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private Long productId;
+    private int quantity;
+    private double totalAmount;
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
+
+    public OrderEntity() {
+        this.status = OrderStatus.CREATED;
+    }
+
+    // getters & setters
+}
+
